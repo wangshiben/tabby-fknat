@@ -1,0 +1,68 @@
+{
+  "name": "tabby-fknat",
+  "version": "0.1.0",
+  "description": "FKNAT transport for Tabby's native SSH client",
+  "author": "wangshiben",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "keywords": [
+    "tabby-plugin",
+    "fknat",
+    "ssh"
+  ],
+  "files": [
+    "dist",
+    "bin/manifest.json",
+    "bin/darwin-arm64/fknat-tabby-helper",
+    "bin/darwin-x64/fknat-tabby-helper",
+    "bin/linux-arm64/fknat-tabby-helper",
+    "bin/linux-x64/fknat-tabby-helper",
+    "bin/win32-arm64/fknat-tabby-helper.exe",
+    "bin/win32-x64/fknat-tabby-helper.exe",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:helper": "node scripts/build-helper.mjs",
+    "prepack": "npm run verify && npm run build:helper",
+    "test": "tsx --test src/**/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run typecheck && npm test && npm run build"
+  },
+  "peerDependencies": {
+    "@angular/animations": "^15",
+    "@angular/common": "^15",
+    "@angular/core": "^15",
+    "@angular/forms": "^15",
+    "@angular/platform-browser": "^15",
+    "@angular/platform-browser-dynamic": "^15",
+    "@ng-bootstrap/ng-bootstrap": "^14",
+    "rxjs": "^7",
+    "tabby-core": "*",
+    "tabby-settings": "*",
+    "tabby-ssh": "*",
+    "tabby-terminal": "*"
+  },
+  "devDependencies": {
+    "@angular/animations": "^15.2.10",
+    "@angular/common": "^15.2.10",
+    "@angular/core": "^15.2.10",
+    "@angular/forms": "^15.2.10",
+    "@angular/platform-browser": "^15.2.10",
+    "@angular/platform-browser-dynamic": "^15.2.10",
+    "@ng-bootstrap/ng-bootstrap": "^14.2.0",
+    "@types/node": "^22.10.0",
+    "rxjs": "^7.8.1",
+    "shell-quote": "1.8.3",
+    "tabby-core": "1.0.231-nightly.0",
+    "tabby-settings": "1.0.231-nightly.0",
+    "tabby-ssh": "1.0.231-nightly.0",
+    "tabby-terminal": "1.0.231-nightly.0",
+    "ts-loader": "^9.5.1",
+    "tsx": "^4.19.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
+  }
+}

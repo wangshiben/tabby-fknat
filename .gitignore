@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+.idea/
+*.tgz
+bin/*/fknat-tabby-helper
+bin/*/fknat-tabby-helper.exe
+!bin/manifest.json
