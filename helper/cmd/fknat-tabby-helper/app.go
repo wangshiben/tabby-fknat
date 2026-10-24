@@ -23,9 +23,11 @@ import (
 )
 
 const (
-	helperVersion   = "0.1.0"
 	protocolVersion = 1
 )
+
+// Release builds set this from package.json with -X main.helperVersion.
+var helperVersion = "development"
 
 type options struct {
 	billingKey string

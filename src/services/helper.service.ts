@@ -78,7 +78,7 @@ export class HelperService {
             this.log.error('FKNAT helper path is not a file', { helperPath })
             throw new Error(this.i18n.instant('FKNAT helper path is not a file'))
         }
-        if (process.platform !== 'win32' && (stat.mode & 0o111) === 0) {
+        if (this.config.helperPathOverride && process.platform !== 'win32' && (stat.mode & 0o111) === 0) {
             this.log.error('FKNAT helper is not executable', { helperPath, mode: stat.mode.toString(8) })
             throw new Error(this.i18n.instant('FKNAT helper is not executable'))
         }
@@ -116,6 +116,12 @@ export class HelperService {
             throw new Error(this.i18n.instant('FKNAT helper checksum verification failed'))
         }
         this.log.debug('FKNAT helper checksum verified', { helperPath, platform, checksum: expected })
+        // Archives produced on Windows can lose POSIX execute bits. Restore only
+        // the bundled helper's owner execute bit after verifying its contents.
+        if (process.platform !== 'win32' && (stat.mode & 0o111) === 0) {
+            await fs.chmod(helperPath, stat.mode | 0o100)
+            this.log.info('Restored execute permission on verified FKNAT helper', { helperPath })
+        }
     }
 
     buildProxyCommand (address: string, shellPlatform: ShellPlatform = process.platform === 'win32' ? 'win32' : 'posix'): string {

@@ -14,6 +14,8 @@ import { HelperService } from './services/helper.service'
 import { FKNATTranslationService } from './services/i18n.service'
 import { FKNATPlatformService } from './services/platform.service'
 
+declare const __FKNAT_PLUGIN_VERSION__: string
+
 class FKNATConfigProvider extends ConfigProvider {
     defaults = { fknat: defaultFKNATConfig }
     platformDefaults = {}
@@ -49,7 +51,8 @@ export default class FKNATModule {
         @Inject(LogService) logService: LogService,
     ) {
         logService.create('tabby-fknat.module').info('FKNAT Tabby plugin module loaded', {
-            pluginVersion: '0.1.0',
+            pluginVersion: __FKNAT_PLUGIN_VERSION__,
+            moduleDirectory: __dirname,
             platform: process.platform,
             arch: process.arch,
         })

@@ -1,4 +1,6 @@
 const path = require('path')
+const webpack = require('webpack')
+const { version } = require('./package.json')
 
 module.exports = {
     target: 'electron-renderer',
@@ -9,6 +11,7 @@ module.exports = {
         libraryTarget: 'commonjs2',
     },
     devtool: 'source-map',
+    plugins: [new webpack.DefinePlugin({ __FKNAT_PLUGIN_VERSION__: JSON.stringify(version) })],
     resolve: { extensions: ['.ts', '.js'] },
     module: {
         rules: [{ test: /\.ts$/, use: 'ts-loader', exclude: /node_modules/ }],

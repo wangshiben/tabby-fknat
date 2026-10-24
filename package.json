@@ -1,6 +1,6 @@
 {
   "name": "tabby-fknat",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "FKNAT transport for Tabby's native SSH client",
   "author": "wangshiben",
   "license": "MIT",
@@ -20,7 +20,8 @@
     "bin/linux-x64/fknat-tabby-helper",
     "bin/win32-arm64/fknat-tabby-helper.exe",
     "bin/win32-x64/fknat-tabby-helper.exe",
-    "README.md"
+    "README.md",
+    "docs/images"
   ],
   "scripts": {
     "build": "webpack --mode production",
@@ -28,7 +29,8 @@
     "prepack": "npm run verify && npm run build:helper",
     "test": "tsx --test src/**/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "verify": "npm run typecheck && npm test && npm run build"
+    "verify": "npm run typecheck && npm test && npm run build",
+    "verify:package": "node scripts/verify-package.mjs"
   },
   "peerDependencies": {
     "@angular/animations": "^15",
@@ -43,6 +45,44 @@
     "tabby-settings": "*",
     "tabby-ssh": "*",
     "tabby-terminal": "*"
+  },
+  "peerDependenciesMeta": {
+    "@angular/animations": {
+      "optional": true
+    },
+    "@angular/common": {
+      "optional": true
+    },
+    "@angular/core": {
+      "optional": true
+    },
+    "@angular/forms": {
+      "optional": true
+    },
+    "@angular/platform-browser": {
+      "optional": true
+    },
+    "@angular/platform-browser-dynamic": {
+      "optional": true
+    },
+    "@ng-bootstrap/ng-bootstrap": {
+      "optional": true
+    },
+    "rxjs": {
+      "optional": true
+    },
+    "tabby-core": {
+      "optional": true
+    },
+    "tabby-settings": {
+      "optional": true
+    },
+    "tabby-ssh": {
+      "optional": true
+    },
+    "tabby-terminal": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@angular/animations": "^15.2.10",
